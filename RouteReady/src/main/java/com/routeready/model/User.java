@@ -1,11 +1,13 @@
 package com.routeready.model;
 
+import org.springframework.lang.Nullable;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Pattern.Flag;
 import jakarta.validation.constraints.Size;
@@ -28,6 +30,6 @@ public class User {
 	private String password;
 	@Pattern(regexp = "^[6-9][0-9]{9}", message = "Please provide a valid mobile number!")
 	private String mobileNumber;
-	private boolean isActive = true;
+	private boolean isActive ;
 
 }
