@@ -1,6 +1,6 @@
 package com.routeready.model;
 
-import jakarta.persistence.Embedded;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,11 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Admin {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Admin extends User{
+	@Column(unique = true)
 	private int adminId;
-	@Embedded
-	private User user;
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,12 +24,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Driver {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Driver extends User {
+	@Column(unique = true)
 	private int driverId;
-	@Embedded
-	private User user;
 	@Size(min = 5, max = 5, message = "License number must be 5 characters long")
 	private String licenceNo;
 	@OneToOne(mappedBy = "driver")

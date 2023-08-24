@@ -28,8 +28,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer getCustomer(Integer customerId) {
 		Customer customer = customerRepo.findById(customerId)
 				.orElseThrow(() -> new NotFoundException("Customer not found with given Id; " + customerId));
-		User user = customer.getUser();
-		if (!user.isActive())
+		
+		if (!customer.isActive())
 			throw new NotFoundException("Customer not found with given Id; " + customerId);
 		return customer;
 	}
@@ -46,9 +46,9 @@ public class CustomerServiceImpl implements CustomerService {
 	public Customer updateCustomer(String address, String mobileNumber, Integer customerId) {
 		Customer customer = customerRepo.findById(customerId)
 				.orElseThrow(() -> new NotFoundException("Customer not found with given Id; " + customerId));
-		User user = customer.getUser();
-		user.setAddress(address);
-		user.setMobileNumber(mobileNumber);
+		
+		customer.setAddress(address);
+		customer.setMobileNumber(mobileNumber);
 
 		return customerRepo.save(customer);
 	}
@@ -57,8 +57,8 @@ public class CustomerServiceImpl implements CustomerService {
 	public String deleteCustomer(Integer customerId) {
 		Customer customer = customerRepo.findById(customerId)
 				.orElseThrow(() -> new NotFoundException("Customer not found with given Id; " + customerId));
-		User user = customer.getUser();
-		user.setActive(false);
+		
+		customer.setActive(false);
 		customerRepo.save(customer);
 		return "Customer deleted succesfully";
 	}

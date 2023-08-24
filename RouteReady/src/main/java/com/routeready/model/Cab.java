@@ -18,7 +18,6 @@ public class Cab {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cabId;
-	
 	private String carType;
 	@NotNull(message = "Please provide Price Per Km!")
 	private double pricePkm;

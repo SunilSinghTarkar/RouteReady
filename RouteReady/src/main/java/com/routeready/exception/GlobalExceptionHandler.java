@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
@@ -25,6 +26,16 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ErrorDetails> RuntimeException(RuntimeException ex, WebRequest req) {
 		ErrorDetails error = new ErrorDetails(ex.getMessage(), req.getDescription(false), LocalDateTime.now());
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<ErrorDetails> myExceptionHandler(MethodArgumentNotValidException me) {
+
+		ErrorDetails err = new ErrorDetails("Validation Error",
+				me.getBindingResult().getFieldError().getDefaultMessage(), LocalDateTime.now());
+
+		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+
 	}
 	
 	
