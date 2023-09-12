@@ -3,6 +3,8 @@ package com.routeready.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.annotation.Nullable;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,9 +31,11 @@ public class Driver extends User {
 	private int driverId;
 	@Size(min = 5, max = 5, message = "License number must be 5 characters long")
 	private String licenceNo;
+	@JsonIgnore
 	@OneToOne(mappedBy = "driver")
 	private Cab cab;
 	private double rating;
+	@JsonIgnore
 	@OneToMany(mappedBy = "driver", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Booking> bookingHistory = new ArrayList<>();
 
