@@ -1,13 +1,19 @@
 package com.routeready.service;
 
-import java.util.List;
-
 import com.routeready.model.Driver;
+import com.routeready.model.DriverDto;
 
 public interface DriverService {
-	public Driver crateDriver(Driver driver);
-	  public Driver getDriver(Integer driverId);
-	  public List<Driver> getAllDriver( );
-	  public Driver updateDriver(String address,String mobileNumber,Integer driverId);
-	  public String deleteDriver(Integer driverId);
+
+    public Driver insertDriver(Driver driver);
+
+    public Driver updateDriver(DriverDto driver,Integer driverId);
+
+    public Driver deleteDriver(Integer driverId);
+
+
+    public Driver viewDriver(Integer driverId);
+
+    public Driver viewDriverByUserName(String userName);
+
 }

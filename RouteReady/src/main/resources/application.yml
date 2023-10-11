@@ -1,14 +1,19 @@
 logging:
   file:
-    name: logging.log
-    path: .
+    path: d:/myspringlogs/RouteReadyLogs/
+  level:
+    com:
+      rideeasy: TRACE
+  pattern:
+    console: '%d{yyyy-MM-dd } %red([%level]) %msg%n'
+    file: =%d{yyyy-MM-dd } %level %msg%n
 server:
-  port: 8080
+  port: 8088
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: cocpubflove
-    url: jdbc:mysql://localhost:3306/routeReady
+    password: 9675
+    url: jdbc:mysql://localhost/routeready
     username: root
   jpa:
     hibernate:
@@ -19,3 +24,7 @@ spring:
   web:
     resources:
       add-mappings: false
+  security:
+    user:
+      name: sunil
+      password: 1234

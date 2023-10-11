@@ -1,26 +1,46 @@
 package com.routeready.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 public class Cab {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int cabId;
-	private String carType;
-	@NotNull(message = "Please provide Price Per Km!")
-	private double pricePkm;
-	@OneToOne
-	private Driver driver;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer cabId;
+
+    @NotNull(message = "Car Type can not be null")
+    @NotBlank(message = "Car Type can not be Blank")
+    private String carType;
+
+    @NotNull(message = "Per Kilometer rate can not be null")
+    private Float perKmRate;
+
+    //RelationShip Start
+    
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Driver driver;
+
+	
+    
+    
+    
+    
+    
 }

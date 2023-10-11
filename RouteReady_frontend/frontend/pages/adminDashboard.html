@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cab Booking Application - Admin Page</title>
+  <link rel="stylesheet" href="../styles/adminDashboard.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        // Load footer content and insert it into the footer element
+        $('#footer').load('footer.html');
+    });
+</script>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">
+      <img id="nav-logo-img" src="../assets/NewLogo.png" alt="Logo">
+    </div>
+    <div class="login">
+      <button style="background-color: rgb(239, 103, 103); border: none; color: aliceblue; " class="admin-btn" onclick="confirmLogout()">Logout</button>
+    </div>
+  </nav>
+ 
+
+
+  <div class="container">
+    <div class="sidebar">
+      <ul>
+        <li><a href="#" onclick="displayContent('add-admin')">Add new admin</a></li>
+        <li><a href="#" onclick="displayContent('update-admin')">Update admin</a></li>
+        <li><a href="#" onclick="displayContent('delete-admin')">Delete admin</a></li>
+        <li><a href="#" onclick="displayContent('get-all-trips')">Get all trips</a></li>
+        <li><a href="#" onclick="displayContent('get-trips-cab-wise')">Get trips cab wise</a></li>
+        <li><a href="#" onclick="displayContent('get-trips-customer-wise')">Get trips customer wise</a></li>
+        <li><a href="#" onclick="displayContent('get-trips-by-date')">Get trips by date range</a></li>
+        <li><a href="#" onclick="displayContent('get-querys')">Get All Query</a></li>
+        <li><button class="button-24" role="button" id="logout-button">Logout</button></li>
+      </ul>
+    </div>
+    <div class="content">
+      <h2>Welcome, Admin!</h2>
+      <p>Select an option from the sidebar to view the results.</p>
+      <h1 style="text-align: center;">All Trip Bookings</h1>
+      <table id="allTripsTable">
+        <tr>
+          <th>Trip  ID</th>
+          <th>From Location</th>
+          <th>To Location</th>
+          <th>From Date & Time</th>
+          <th>To Date & Time</th>
+          <th>Distance (km)</th>
+          <th>Per Km Rate</th>
+          <th>Bill Amount</th>
+          <th>Driver Name</th>
+          <th>Driver Mobile</th>
+          <th>Driver Email</th>
+          <th>Car Type</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <footer id="footer">
+    <!-- Footer content will be loaded here -->
+</footer>
+
+  <script src="../scripts/adminDashboard.js"></script>
+</body>
+
+</html>
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/adminStyle.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        // Load footer content and insert it into the footer element
+        $('#footer').load('footer.html');
+    });
+</script>
+    <title>Admin | RouteReady</title>
+</head>
+<body>
+    <body>
+        <nav>
+          <div class="logo">
+            <img id="nav-logo-img" src="../assets/NewLogo.png" alt="Logo">
+          </div>
+          <div  class= "nav-info">
+            <a href="./index.html">Home</a>
+            <a href="#">Contact</a>
+            <a href="#">About us.</a>
+         </div>
+
+          <div class="login">
+            <div class="dropdown">
+              <button class="dropbtn button-37">Login</button>
+              <div class="dropdown-content">
+                <a href="admin.html">Admin</a>
+                <a href="customer.html">Customer</a>
+                <a href="driver.html">Driver</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <div class="under-nav">
+    
+          <a href="./index.html">Home</a>
+          <a href="#">Contact</a>
+          <a href="#">About us.</a>
+     
+      </div>
+      <hr class="under-nav-hr">
+      
+        <div class="container">
+          <form class="login-form">
+            <h2>Admin Login</h2>
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+              <label for="remember">Remember me:</label>
+              <input type="checkbox" id="remember" name="remember">
+            </div>
+            <button type="submit" onclick="loginAdmin()">Login</button>
+          </form>
+          <p id="error-message" class="error-message"></p>
+        </div>
+        <footer id="footer">
+          <!-- Footer content will be loaded here -->
+      </footer>
+        <script src="../scripts/adminScript.js"></script>
+      </body>
+      </html>
+</body>
+</html>
