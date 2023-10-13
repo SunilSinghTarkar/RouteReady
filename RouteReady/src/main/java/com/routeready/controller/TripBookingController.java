@@ -20,55 +20,58 @@ import com.routeready.model.TripBookingDto;
 import com.routeready.service.TripBookingService;
 
 import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping("/tripbookings")
 public class TripBookingController {
 
-	@Autowired
-	private TripBookingService tripBookingService;
+    @Autowired
+    private TripBookingService tripBookingService;
 
-	@PostMapping("/{customerId}")
-	public ResponseEntity<TripBooking> insertTripBooking(@Valid @RequestBody TripBookingDto tripBooking,
-			@PathVariable("customerId") Integer customerId) {
-		try {
-			TripBooking createdTripBooking = tripBookingService.insertTripBooking(tripBooking, customerId);
-			return ResponseEntity.status(HttpStatus.CREATED).body(createdTripBooking);
-		} catch (RouteReadyException e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-		}
-	}
+    // Create a new trip booking for a customer
+    @PostMapping("/{customerId}")
+    public ResponseEntity<TripBooking> insertTripBooking(@Valid @RequestBody TripBookingDto tripBooking,
+            @PathVariable("customerId") Integer customerId) {
+        try {
+            TripBooking createdTripBooking = tripBookingService.insertTripBooking(tripBooking, customerId);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdTripBooking);
+        } catch (RouteReadyException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
 
-	@PutMapping("/update")
-	public ResponseEntity<TripBooking> updateTripBooking(@Valid @RequestBody TripBookingDto tripBooking) {
-		TripBooking trip = tripBookingService.updateTripBooking(tripBooking);
+    // Update an existing trip booking
+    @PutMapping("/update")
+    public ResponseEntity<TripBooking> updateTripBooking(@Valid @RequestBody TripBookingDto tripBooking) {
+        TripBooking trip = tripBookingService.updateTripBooking(tripBooking);
+        return new ResponseEntity<TripBooking>(trip, HttpStatus.OK);
+    }
 
-		return new ResponseEntity<TripBooking>(trip, HttpStatus.OK);
-	}
+    // Delete a trip booking by ID
+    @DeleteMapping("/{tripBookingId}")
+    public ResponseEntity<String> deleteTripBooking(@PathVariable("tripBookingId") int tripBookingId) {
+        String str = tripBookingService.deleteTripBooking(tripBookingId);
+        return new ResponseEntity<String>(str, HttpStatus.OK);
+    }
 
-	@DeleteMapping("/{tripBookingId}")
-	public ResponseEntity<String> deleteTripBooking(@PathVariable("tripBookingId") int tripBookingId) {
-		String str=tripBookingService.deleteTripBooking(tripBookingId);
-		return new ResponseEntity<String>(str,HttpStatus.OK);
-	}
+    // Get a list of all trips for a specific customer
+    @GetMapping("/customer/{customerId}")
+    public ResponseEntity<List<TripBooking>> viewAllTripsCustomer(@PathVariable("customerId") int customerId) {
+        try {
+            List<TripBooking> tripBookings = tripBookingService.viewAllTripsCustomer(customerId);
+            return ResponseEntity.ok(tripBookings);
+        } catch (RouteReadyException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 
-	@GetMapping("/customer/{customerId}")
-	public ResponseEntity<List<TripBooking>> viewAllTripsCustomer(@PathVariable("customerId") int customerId) {
-		try {
-			List<TripBooking> tripBookings = tripBookingService.viewAllTripsCustomer(customerId);
-			return ResponseEntity.ok(tripBookings);
-		} catch (RouteReadyException e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-	}
-	@GetMapping("/driver/{driverId}")
-	public ResponseEntity<List<TripBooking>> viewAllTripsDriver(@PathVariable("driverId") int driverId) {
-		try {
-			List<TripBooking> tripBookings = tripBookingService.viewAllTripsDriver(driverId);
-			return ResponseEntity.ok(tripBookings);
-		} catch (RouteReadyException e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-		}
-	}
-
+    // Get a list of all trips for a specific driver
+    @GetMapping("/driver/{driverId}")
+    public ResponseEntity<List<TripBooking>> viewAllTripsDriver(@PathVariable("driverId") int driverId) {
+        try {
+            List<TripBooking> tripBookings = tripBookingService.viewAllTripsDriver(driverId);
+            return ResponseEntity.ok(tripBookings);
+        } catch (RouteReadyException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
 }
