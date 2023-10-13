@@ -1,13 +1,14 @@
 # Online-Cab-Booking-Application (Route Ready)
 This application allows customers to view and book available cabs for their desired locations, and it provides administrators with tools to manage cabs, drivers, and bookings. 
- <h2 align="center">Features </h2>
 
 ### Project Details
 
 - Project Name: BeautyBliss
 - Project URL: 
 - GitHub Repository: [https://github.com/SunilSinghTarkar/potent-voyage-8716](https://github.com/SunilSinghTarkar/potent-voyage-8716)
- 
+
+  
+ <h2 align="center">Features </h2>
 <h3>Customer Module</h3>
 <!--  <br /> -->
 <b>  User Registration: </b>  Customers can register with the application by providing their personal information and contact details.
