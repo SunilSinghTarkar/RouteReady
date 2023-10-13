@@ -40,6 +40,7 @@ public class AdminController {
 	@Autowired
 	private PasswordEncoder encoder;
 
+	// Add a new Admin
 	@PostMapping("/add")
 	public ResponseEntity<Admin> insertAdminController(@Valid @RequestBody Admin admin) {
 		try {
@@ -55,6 +56,7 @@ public class AdminController {
 		}
 	}
 
+	// Update Admin Details
 	@PutMapping("/{adminId}")
 	public ResponseEntity<Admin> updateAdminDetails(@PathVariable Integer adminId, @Valid @RequestBody Admin admin) {
 		try {
@@ -68,6 +70,7 @@ public class AdminController {
 		}
 	}
 
+	// Delete an Admin
 	@DeleteMapping("/{adminId}")
 	public ResponseEntity<Admin> deleteAdminController(@PathVariable Integer adminId) {
 		try {
@@ -76,17 +79,18 @@ public class AdminController {
 			log.info("Admin deleted successfully : AdminController");
 			return ResponseEntity.status(HttpStatus.OK).body(deletedAdmin);
 		} catch (RouteReadyException ex) {
-			log.warn("Admin deletation failed : AdminController");
+			log.warn("Admin deletion failed : AdminController");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
 	}
 
+	// Get all trips of a specific customer
 	@GetMapping("/customer/allTrips/{customerId}")
 	public ResponseEntity<List<TripBooking>> getAllTripsOfCustomerController(@PathVariable Integer customerId) {
 		try {
 			log.info("Try to get all trips of a customer : AdminController");
 			List<TripBooking> tripBookings = adminService.getAllTripsOfCustomer(customerId);
-			log.info("All trips got successfully : AdminController");
+			log.info("All trips retrieved successfully : AdminController");
 			return ResponseEntity.status(HttpStatus.OK).body(tripBookings);
 		} catch (RouteReadyException ex) {
 			log.warn("Getting trips of a customer failed : AdminController");
@@ -94,12 +98,13 @@ public class AdminController {
 		}
 	}
 
+	// Get all trips associated with a specific cab
 	@GetMapping("/cab/{cabId}")
 	public ResponseEntity<List<TripBooking>> getTripsCabWiseController(@PathVariable Integer cabId) {
 		try {
 			log.info("Try to get all trips cab wise : AdminController");
 			List<TripBooking> tripBookings = adminService.getTripsCabWise(cabId);
-			log.info("All trips got successfully : AdminController");
+			log.info("All trips retrieved successfully : AdminController");
 			return ResponseEntity.status(HttpStatus.OK).body(tripBookings);
 		} catch (RouteReadyException ex) {
 			log.warn("Getting trips cab wise failed : AdminController");
@@ -107,12 +112,13 @@ public class AdminController {
 		}
 	}
 
+	// Get all trips associated with a specific customer
 	@GetMapping("/customer/{customerId}")
 	public ResponseEntity<List<TripBooking>> getTripsCustomerWiseController(@PathVariable Integer customerId) {
 		try {
 			log.info("Try to get all trips customer wise : AdminController");
 			List<TripBooking> tripBookings = adminService.getTripsCustomerWise(customerId);
-			log.info("All trips got successfully : AdminController");
+			log.info("All trips retrieved successfully : AdminController");
 			return ResponseEntity.status(HttpStatus.OK).body(tripBookings);
 		} catch (RouteReadyException ex) {
 			log.warn("Getting trips customer wise failed : AdminController");
@@ -120,12 +126,13 @@ public class AdminController {
 		}
 	}
 
+	// Get all trips for a specific date and time
 	@GetMapping("/date/{dateTime}")
 	public ResponseEntity<List<TripBooking>> getTripsDateWiseController(@PathVariable LocalDateTime dateTime) {
 		try {
 			log.info("Try to get all trips date wise : AdminController");
 			List<TripBooking> tripBookings = adminService.getTripsDateWise(dateTime);
-			log.info("All trips got successfully : AdminController");
+			log.info("All trips retrieved successfully : AdminController");
 			return ResponseEntity.status(HttpStatus.OK).body(tripBookings);
 		} catch (RouteReadyException ex) {
 			log.warn("Getting trips date wise failed : AdminController");
@@ -133,13 +140,14 @@ public class AdminController {
 		}
 	}
 
+	// Get all trips for a specific date range
 	@GetMapping("/forDays/{customerId}/{fromDate}/{toDate}")
 	public ResponseEntity<List<TripBooking>> getAllTripsForDaysController(@PathVariable Integer customerId,
 			LocalDateTime fromDate, LocalDateTime toDate) {
 		try {
 			log.info("Try to get all trips for days : AdminController");
 			List<TripBooking> tripBookings = adminService.getAllTripsForDays(customerId, fromDate, toDate);
-			log.info("All trips got successfully : AdminController");
+			log.info("All trips retrieved successfully : AdminController");
 			return ResponseEntity.status(HttpStatus.OK).body(tripBookings);
 		} catch (RouteReadyException ex) {
 			log.warn("Getting trips for days failed : AdminController");
@@ -147,27 +155,32 @@ public class AdminController {
 		}
 	}
 
+	// Assign a cab to a driver
 	@PostMapping("/assignCabToDriver/{driverId}/{cabId}")
 	public ResponseEntity<String> assignCabToDriver(@PathVariable Integer driverId, @PathVariable Integer cabId) {
 		String str = adminService.assignCabToDriver(driverId, cabId);
 		return new ResponseEntity<>(str, HttpStatus.ACCEPTED);
 	}
+
+	// Get all queries
 	@GetMapping("/querys")
 	public ResponseEntity<List<Query>> getAllQuery() {
 		try {
-			log.info("Try to get all Query of a customers : AdminController");
+			log.info("Try to get all Queries of customers : AdminController");
 			List<Query> queryList = adminService.getAllQuery();
-			log.info("All querys got successfully : AdminController");
+			log.info("All queries retrieved successfully : AdminController");
 			return ResponseEntity.status(HttpStatus.OK).body(queryList);
 		} catch (RouteReadyException ex) {
-			log.warn("Getting query of a customers failed : AdminController");
+			log.warn("Getting queries of customers failed : AdminController");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
 	}
+
+	// Insert a new query
 	@PostMapping("/querys")
 	public ResponseEntity<Query> insertQuery(@Valid @RequestBody Query query) {
 		try {
-			log.info("Try to insert new Query : AdminController");
+			log.info("Try to insert a new Query : AdminController");
 			Query insertedQuery = adminService.insertQuery(query);
 			log.info("Query inserted successfully : AdminController");
 			return ResponseEntity.status(HttpStatus.CREATED).body(insertedQuery);
@@ -176,21 +189,19 @@ public class AdminController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 		}
 	}
-	
+
+	// Get all trip bookings with pagination
 	@GetMapping("/alltripbookings")
-	public ResponseEntity<List<TripBooking>> getAllTrips(
-			@RequestParam(defaultValue = "2") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize
-			) {
+	public ResponseEntity<List<TripBooking>> getAllTrips(@RequestParam(defaultValue = "0") Integer pageNo,
+			@RequestParam(defaultValue = "10") Integer pageSize) {
 		try {
-			log.info("Try to get all trips  : AdminController");
-			List<TripBooking> tripBookings = tripBookingService.getAllTripBooking( pageNo, pageSize);
-			log.info("All trips got successfully : AdminController");
+			log.info("Try to get all trips with pagination : AdminController");
+			List<TripBooking> tripBookings = tripBookingService.getAllTripBooking(pageNo, pageSize);
+			log.info("All trips retrieved successfully : AdminController");
 			return ResponseEntity.status(HttpStatus.OK).body(tripBookings);
 		} catch (RouteReadyException ex) {
-			log.warn("Getting trips  failed : AdminController");
+			log.warn("Getting trips failed : AdminController");
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
 		}
 	}
-	
 }
