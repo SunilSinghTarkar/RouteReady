@@ -77,8 +77,8 @@ Start using the application, booking cabs, and managing the system as an admin.
 Before running the API server, please follow these steps:
 
 1. Update the database configuration inside the `application.yml` file located in your project:
-   ```properties
-  server:
+ ```yaml
+server:
   port: 8088
 spring:
   datasource:
@@ -86,8 +86,7 @@ spring:
     password: your_password
     url: jdbc:mysql://localhost/your_database_name
     username: your_username
-
-
+```
 Future Enhancements
 Implement real-time tracking of booked cabs for customers.
 
