@@ -48,14 +48,14 @@ Login: Registered customers can log in to their accounts securely using Spring S
 
 <b>Approve/Reject Bookings:</b> Admins can approve or reject booking requests based on availability and other factors.
 
-<b>View Booking History:</b> Admins can access the history of all bookings, including details of completed, ongoing, and canceled trips.
+<b>View Booking History:</b> Admins can access the history of all bookings, including details of completed, ongoing, and cancelled trips.
 
 Technologies Used
 Backend: Java, Spring Boot, Spring Security, JPA
 
 <b>Database:</b> MySQL
 
-<b>Frontend:</b> HTML, CSS
+<b>Frontend:</b> HTML, CSS, Javascript
 
 <b>Authentication:</b> Spring Security with JWT (JSON Web Tokens)
 
@@ -72,6 +72,22 @@ Access the application through a web browser and register/login as a customer or
 
 Start using the application, booking cabs, and managing the system as an admin.
 
+## Installation & Run
+
+Before running the API server, please follow these steps:
+
+1. Update the database configuration inside the `application.yml` file located in your project:
+   ```properties
+  server:
+  port: 8088
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: your_password
+    url: jdbc:mysql://localhost/your_database_name
+    username: your_username
+
+
 Future Enhancements
 Implement real-time tracking of booked cabs for customers.
 
@@ -82,7 +98,16 @@ Develop a mobile application for wider accessibility.
 Add a rating and feedback system for customers and drivers.
 
 
+<H3>Contributors</H3>
+
+Thank you to the following contributors for their valuable contributions to this project:
+- [Sunil Singh Tarkar](https://github.com/SunilSinghTarkar)
+- [Amit Roy](https://github.com/Amit0841)
+- [Tushar Deshmukh](https://github.com/deshmukh-tushar)
+
+
 <H3>Database architecture</H3>
 
 ![image](https://github.com/SunilSinghTarkar/potent-voyage-8716/assets/115461383/17e7f8af-48f6-444d-9312-2ea75aaf8917)
+
 
