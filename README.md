@@ -6,7 +6,6 @@ This application allows customers to view and book available cabs for their desi
 - Project Name: RouteReady
 - Project URL: 
 - GitHub Repository: [https://github.com/SunilSinghTarkar/potent-voyage-8716](https://github.com/SunilSinghTarkar/potent-voyage-8716)
-
   
  <h2 align="center">Features </h2>
 <h3>Customer Module</h3>
@@ -81,3 +80,9 @@ Integrate a payment gateway for fare transactions.
 Develop a mobile application for wider accessibility.
 
 Add a rating and feedback system for customers and drivers.
+
+
+<H3>Database architecture</H3>
+
+![image](https://github.com/SunilSinghTarkar/potent-voyage-8716/assets/115461383/17e7f8af-48f6-444d-9312-2ea75aaf8917)
+
